@@ -7,6 +7,7 @@
 use std::time::Duration;
 
 use reqwest::Client;
+use serde_json::json;
 use thiserror::Error;
 use tracing::{debug, instrument, warn};
 
@@ -270,10 +271,10 @@ impl CiderClient {
             return Ok(None);
         }
 
-        match resp.json::<ApiResponse<NowPlayingResponse>>().await {
-            Ok(data) => Ok(Some(data.data.info)),
-            Err(_) => Ok(None),
-        }
+        resp.json::<ApiResponse<NowPlayingResponse>>()
+            .await
+            .map(|resp| Some(resp.data.info))
+            .map_err(CiderError::from)
     }
 
     // ── Playback control ─────────────────────────────────────────────────

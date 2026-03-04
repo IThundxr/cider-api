@@ -138,7 +138,7 @@ pub struct PlayParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Preview {
     /// Direct URL to the preview audio file.
-    pub url: String,
+    pub url: Option<String>,
 }
 
 // ─── Now Playing ─────────────────────────────────────────────────────────────

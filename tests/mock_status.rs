@@ -145,7 +145,7 @@ async fn now_playing_returns_none_on_204() {
 }
 
 #[tokio::test]
-async fn now_playing_returns_none_on_unparseable_json() {
+async fn now_playing_returns_error_on_unparseable_json() {
     let (server, client) = common::setup().await;
     Mock::given(method("GET"))
         .and(path("/api/v1/playback/now-playing"))
@@ -156,5 +156,5 @@ async fn now_playing_returns_none_on_unparseable_json() {
         )
         .mount(&server)
         .await;
-    assert!(client.now_playing().await.unwrap().is_none());
+    assert!(client.now_playing().await.is_err());
 }
