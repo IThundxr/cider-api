@@ -186,7 +186,7 @@ pub struct NowPlaying {
 
     /// Total duration in milliseconds.
     #[serde(default)]
-    pub duration_in_millis: u64,
+    pub duration_in_millis: i64,
 
     // ── Identifiers ──
 
@@ -435,7 +435,7 @@ pub struct QueueItemAttributes {
 
     /// Total duration in milliseconds.
     #[serde(default)]
-    pub duration_in_millis: u64,
+    pub duration_in_millis: i64,
 
     // ── Identifiers ──
 
